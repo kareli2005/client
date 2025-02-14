@@ -5,7 +5,7 @@ import Content from './components/Content'
 import { useSystemMessage } from '../../context/SystemMessageContext'
 import httpClient from '../../utils/httpClient'
 import { CircularProgress } from '@mui/material'
-import { useUserData } from '../../context/userDataContext'
+import { useUserData } from '../../context/UserDataContext'
 
 const Chat = () => {
   const { setMessage } = useSystemMessage()

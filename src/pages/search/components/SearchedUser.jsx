@@ -2,7 +2,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import routes from '../../../routes'
-import { useUserData } from '../../../context/userDataContext'
+import { useUserData } from '../../../context/UserDataContext'
 
 const SearchedUser = ({ user }) => {
 
