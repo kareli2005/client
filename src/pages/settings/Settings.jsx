@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Credential from './components/Credential'
-import { useUserData } from '../../context/userDataContext'
+import { useUserData } from '../../context/UserDataContext'
 import Profile from './components/Profile'
 import CustomButton from '../../components/CustomButton'
 import LogoutIcon from '@mui/icons-material/Logout';
