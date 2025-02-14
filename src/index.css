@@ -1,0 +1,101 @@
+@import 'tailwindcss';
+
+
+@theme {
+  --color-blue-primary: rgb(0, 116, 217);
+  --color-blue-primary-tr: rgba(0, 116, 217, 0.3);
+  --color-red-primary: rgb(231, 0, 11);
+  --color-red-primary-tr: rgba(231, 0, 11, 0.3);
+  --font-primary: "Varela Round", "sans-serif";
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.auth-container-enter {
+  animation: authContainerEnter 0.5s forwards;
+}
+
+@keyframes authContainerEnter {
+  0% {
+    transform: translatey(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (min-width: 768px) {
+  @keyframes authContainerEnter {
+    0% {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+}
+
+.welcome-hero-enter {
+  animation: welcomeHeroEnter 0.5s forwards;
+}
+
+@keyframes welcomeHeroEnter {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.side-navbar-enter {
+  animation: sideNavBarEnter 0.5s forwards;
+}
+
+@keyframes sideNavBarEnter {
+  0% {
+    transform: translateX(-200%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+.mobile-navbar-enter {
+  animation: mobileNavBarEnter 0.5s forwards;
+}
+
+@keyframes mobileNavBarEnter {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+.home-container-enter {
+  animation: homeConntainerEnter 0.5s forwards;
+}
+
+@keyframes homeConntainerEnter {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
