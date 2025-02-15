@@ -30,6 +30,7 @@ const Settings = () => {
         removeUserData()
         setMessage('success', response.data.message)
         navigate(routes.getstarted.path)
+        localStorage.removeItem('jwt_token')
       } else {
         setMessage('error', response.data.error || errorMsg)
       }

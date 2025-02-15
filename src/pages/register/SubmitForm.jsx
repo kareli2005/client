@@ -24,10 +24,12 @@ const SubmitForm = ({ setIsLoading }) => {
 
   useEffect(() => {
     const serverEmail = searchParams.get('email')
+    const token = searchParams.get('token')
 
     setCredentials((prev) => ({
       ...prev,
       email: serverEmail || '',
+      token: token || ''
     }))
   }, [searchParams])
 
@@ -37,6 +39,7 @@ const SubmitForm = ({ setIsLoading }) => {
     if (!credentials.password) return setMessage('error', 'Please enter password')
     const emailNotValid = notValidEmail(credentials.email)
     const passwordNotValid = notValidPassword(credentials.password)
+
 
     if (emailNotValid) {
       return setMessage('error', emailNotValid)
@@ -49,8 +52,14 @@ const SubmitForm = ({ setIsLoading }) => {
     const errorMsg = 'Server Error, Please try again'
     try {
       const response = await httpClient.post('/auth/register', credentials)
-      if (response.status == 200) {
+
+      if (response.status === 200) {
         setMessage('success', response.data.message)
+
+        if (response.data.access_token) {
+          localStorage.setItem('jwt_token', response.data.access_token)
+        }
+
         navigate(routes.home.path)
       } else {
         setMessage('error', response.data.error || errorMsg)

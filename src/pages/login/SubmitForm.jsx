@@ -26,6 +26,11 @@ const SubmitForm = ({ setIsLoading }) => {
     try {
       const response = await httpClient.post('/auth/login', credentials)
       if (response.status == 200) {
+
+        if (response.data.access_token) {
+          localStorage.setItem('jwt_token', response.data.access_token);
+        }
+
         setMessage('success', response.data.message)
         navigate(routes.home.path)
       } else {
