@@ -23,6 +23,22 @@ const Chat = () => {
     const url = window.location.pathname
     const chat_id = url.split('/').pop()
 
+    const chatParts = chat_id.split('_')
+
+    if (chatParts.length !== 2) {
+      setMessage('error', 'Invalid chat ID format. It should be in the format "user1Id_user2Id".')
+      setIsLoading(false)
+      return
+    }
+
+    const [user1Id, user2Id] = chatParts
+
+    if (user1Id === user2Id) {
+      setMessage('error', "You can't chat with yourself")
+      setIsLoading(false)
+      return
+    }
+
     if (!chat_id) {
       setMessage('error', 'Invalid chat ID')
       setIsLoading(false)

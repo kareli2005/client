@@ -3,13 +3,11 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import routes from '../../../routes'
 import { useUserData } from '../../../context/UserDataContext'
-import { useSystemMessage } from '../../../context/SystemMessageContext'
 
 const SearchedUser = ({ user }) => {
 
   const navigate = useNavigate()
   const { userData } = useUserData()
-  const { setMessage } = useSystemMessage()
 
   const getChatId = () => {
     return user.id < userData.id ? user.id + '_' + userData.id : userData.id + '_' + user.id
@@ -20,13 +18,6 @@ const SearchedUser = ({ user }) => {
     const url = routes.home.children.chats.path + '/' + chatId
     navigate(url)
   }
-
-
-  if (user.id == userData.id) {
-    setMessage('error', 'Can not chat yourself')
-    return
-  }
-
   return (
     <div onClick={() => handleOpenChat()} className='w-full bg-white rounded-xl p-4 flex gap-4 cursor-pointer relative shadow-lg shadow-gray-300 hover:hover:scale-95 duration-300 home-container-enter'>
       <img src={user.image} alt="/userProfile" className='w-14 h-14 rounded-lg bg-slate-400' />
