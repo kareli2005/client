@@ -6,6 +6,8 @@ import { useSystemMessage } from '../../context/SystemMessageContext'
 import httpClient from '../../utils/httpClient'
 import { CircularProgress } from '@mui/material'
 import { useUserData } from '../../context/UserDataContext'
+import { useNavigate } from 'react-router-dom'
+import routes from '../../routes'
 
 const Chat = () => {
   const { setMessage } = useSystemMessage()
@@ -19,6 +21,7 @@ const Chat = () => {
 
   const messagesEndRef = useRef(null)
 
+  const navigate = useNavigate()
   const fetchChatData = async () => {
     const url = window.location.pathname
     const chat_id = url.split('/').pop()
@@ -28,6 +31,7 @@ const Chat = () => {
     if (chatParts.length !== 2) {
       setMessage('error', 'Invalid chat ID format. It should be in the format "user1Id_user2Id".')
       setIsLoading(false)
+      navigate(routes.home.children.chats.path)
       return
     }
 
