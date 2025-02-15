@@ -1,13 +1,15 @@
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import routes from '../../../routes'
 import { useUserData } from '../../../context/UserDataContext'
+import { useSystemMessage } from '../../../context/SystemMessageContext'
 
 const SearchedUser = ({ user }) => {
 
   const navigate = useNavigate()
   const { userData } = useUserData()
+  const { setMessage } = useSystemMessage()
 
   const getChatId = () => {
     return user.id < userData.id ? user.id + '_' + userData.id : userData.id + '_' + user.id
@@ -17,6 +19,12 @@ const SearchedUser = ({ user }) => {
     const chatId = getChatId()
     const url = routes.home.children.chats.path + '/' + chatId
     navigate(url)
+  }
+
+
+  if (user.id == userData.id) {
+    setMessage('error', 'Can not chat yourself')
+    return
   }
 
   return (
